@@ -31,6 +31,13 @@ namespace TutorialGame.Source.GamePlay.World
 
         public void Draw(clsWorld WORLD)
         {
+            Globals.normalEffect.Parameters["xSize"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["ySize"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["xDraw"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["yDraw"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["filterColor"].SetValue(Color.White.ToVector4());
+            Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
+
             string tempStr = "Score = " + GameGlobals.score;
             Vector2 strDims = font.MeasureString(tempStr);
 
@@ -43,6 +50,10 @@ namespace TutorialGame.Source.GamePlay.World
             );
 
             healthBar.Draw(new Vector2(20, Globals.screenHeight - 40));
+
+            Globals.normalEffect.Parameters["filterColor"].SetValue(Color.White.ToVector4());
+            Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
+
 
             if (WORLD.user.hero.dead || WORLD.user.buildings.Count <= 0)
             {

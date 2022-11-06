@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TutorialGame.Source.Engine;
 using TutorialGame.Source.GamePlay.World;
 using TutorialGame.Source.GamePlay.World.Players;
@@ -29,10 +30,9 @@ namespace TutorialGame.Source.GamePlay
             GameGlobals.PassSpawnPoint = AddSpawnPoint;
             GameGlobals.CheckScroll = CheckScroll;
 
-            user = new User(1);
-            aIPlayer = new AIPlayer(2);
-
             offset = new Vector2(0, 0);
+
+            LoadData(1);
 
             ui = new UI();
         }
@@ -133,6 +133,27 @@ namespace TutorialGame.Source.GamePlay
                 offset = new Vector2(offset.X, offset.Y - user.hero.speed * 2);
             }
 
+        }
+
+        public virtual void LoadData(int LVL)
+        {
+            XDocument xDoc = XDocument.Load("XML\\Levels\\Level"+LVL+".xml");
+
+            XElement tempElement = null;
+            if(xDoc.Element("Root").Element("User") != null)
+            {
+                tempElement = xDoc.Element("Root").Element("User");
+            }
+
+            user = new User(1, tempElement);
+
+            tempElement = null;
+            if (xDoc.Element("Root").Element("AIPlayer") != null)
+            {
+                tempElement = xDoc.Element("Root").Element("AIPlayer");
+            }
+
+            aIPlayer = new AIPlayer(2, tempElement);
         }
 
         public virtual void Draw(Vector2 OFFSET)

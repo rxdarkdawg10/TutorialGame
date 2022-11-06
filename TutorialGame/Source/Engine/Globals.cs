@@ -15,10 +15,13 @@ namespace TutorialGame.Source.Engine
 
     internal class Globals
     {
+        public static System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
         public static int screenHeight, screenWidth;
         public static Random rand = new Random();
         public static ContentManager content;
         public static SpriteBatch spriteBatch;
+
+        public static Effect normalEffect;
 
         public static clsKeyboard keyboard;
         public static clsMouseControl mouse;

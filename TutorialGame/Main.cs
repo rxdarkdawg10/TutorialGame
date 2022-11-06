@@ -45,6 +45,8 @@ namespace TutorialGame
             // TODO: use this.Content to load your game content here
             cursor = new Basic2d("2d\\Misc\\Cursor", new Vector2(0, 0), new Vector2(28, 28));
 
+            Globals.normalEffect = Globals.content.Load<Effect>("Effects\\Normal");
+
             Globals.keyboard = new clsKeyboard();
             Globals.mouse = new clsMouseControl();
 
@@ -75,7 +77,7 @@ namespace TutorialGame
             // TODO: Add your drawing code here
 
             // Open SpriteBatch for Drawing
-            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
 
             gamePlay.Draw();
