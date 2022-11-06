@@ -27,6 +27,7 @@ namespace TutorialGame.Source.GamePlay
 
             GameGlobals.PassProjectile = AddProjectile;
             GameGlobals.PassMob = AddMob;
+            GameGlobals.PassBuilding = AddBuilding;
             GameGlobals.PassSpawnPoint = AddSpawnPoint;
             GameGlobals.CheckScroll = CheckScroll;
 
@@ -85,8 +86,21 @@ namespace TutorialGame.Source.GamePlay
             {
                 aIPlayer.AddUnit(tempUnit);
             }
+        }
 
-            // aIPlayer.AddUnit((Mob)INFO);
+        public virtual void AddBuilding(object INFO)
+        {
+
+            Building tempBuilding = (Building)INFO;
+
+            if (user.id == tempBuilding.ownerId)
+            {
+                user.AddBuilding(tempBuilding);
+            }
+            else if (aIPlayer.id == tempBuilding.ownerId)
+            {
+                aIPlayer.AddBuilding(tempBuilding);
+            }
         }
 
         public virtual void AddProjectile(object INFO)

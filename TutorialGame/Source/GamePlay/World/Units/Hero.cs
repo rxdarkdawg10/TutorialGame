@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TutorialGame.Source.Engine;
+using TutorialGame.Source.GamePlay.World.Buildings;
 using TutorialGame.Source.GamePlay.World.Projectiles;
 
 namespace TutorialGame.Source.GamePlay.World.Units
@@ -41,6 +42,14 @@ namespace TutorialGame.Source.GamePlay.World.Units
             {
                 pos = new Vector2(pos.X, pos.Y + speed);
                 checkScroll = true;
+            }
+
+            if (Globals.keyboard.GetSinglePress("D1"))
+            {
+                GameGlobals.PassBuilding(new ArrowTower(
+                    new Vector2(pos.X, pos.Y - 30),
+                    ownerId
+                    ));
             }
 
             if (checkScroll)

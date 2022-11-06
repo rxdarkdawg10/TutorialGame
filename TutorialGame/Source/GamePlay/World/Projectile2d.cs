@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using TutorialGame.Source.Engine;
+using TutorialGame.Source.GamePlay.World.Projectiles;
 
 namespace TutorialGame.Source.GamePlay.World
 {
@@ -10,9 +11,9 @@ namespace TutorialGame.Source.GamePlay.World
         public Vector2 direction;
         public bool done;
         public clsTimer timer;
-        public Unit owner;
+        public AttackableObject owner;
 
-        public Projectile2d(string PATH, Vector2 POS, Vector2 DIMS, Unit OWNER, Vector2 TARGET) : base(PATH, POS, DIMS)
+        public Projectile2d(string PATH, Vector2 POS, Vector2 DIMS, AttackableObject OWNER, Vector2 TARGET) : base(PATH, POS, DIMS)
         {
             done = false;
             speed = 5.0f;

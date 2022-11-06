@@ -117,6 +117,13 @@ namespace TutorialGame.Source.GamePlay.World
             units.Add(tempUnit);
         }
 
+        public virtual void AddBuilding(object INFO)
+        {
+            Building tempBuilding = (Building)INFO;
+            tempBuilding.ownerId = id;
+            buildings.Add(tempBuilding);
+        }
+
         public virtual void AddSpawnPoint(object INFO)
         {
             SpawnPoint tempSpawnPoint = (SpawnPoint)INFO;

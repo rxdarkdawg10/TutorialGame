@@ -8,6 +8,7 @@ namespace TutorialGame
         public static int score = 0;
         public static PassObject PassProjectile
             , PassMob
+            , PassBuilding
             , CheckScroll
             , PassSpawnPoint;
     }

@@ -96,6 +96,7 @@ namespace TutorialGame
         {
             using var game = new Main();
             game.Run();
+            game.Dispose();
         }
     }
 }

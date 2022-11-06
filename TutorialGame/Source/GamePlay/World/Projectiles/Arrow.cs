@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace TutorialGame.Source.GamePlay.World.Projectiles
 {
-    internal class Fireball : Projectile2d
+    internal class Arrow : Projectile2d
     {
-        public Fireball(Vector2 POS, AttackableObject OWNER, Vector2 TARGET)
-        : base("2d\\Projectiles\\Fireball", POS, new Vector2(20, 20), OWNER, TARGET)
+        public Arrow(Vector2 POS, AttackableObject OWNER, Vector2 TARGET)
+        : base("2d\\Projectiles\\Arrow", POS, new Vector2(20, 20), OWNER, TARGET)
         {
-
+            speed = 10.0f;
+            timer = new Engine.clsTimer(800);
         }
 
         public override void Update(Vector2 OFFSET, List<AttackableObject> UNITS)
