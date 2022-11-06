@@ -37,7 +37,7 @@ namespace TutorialGame.Source.GamePlay.World.Units.Mobs
 
         public virtual void SpawnEggSac()
         {
-            GameGlobals.PassSpawnPoint(new SpiderEggSac(new Vector2(pos.X, pos.Y), ownerId));
+            GameGlobals.PassSpawnPoint(new SpiderEggSac(new Vector2(pos.X, pos.Y), ownerId, null));
         }
 
         public override void Draw(Vector2 OFFSET)

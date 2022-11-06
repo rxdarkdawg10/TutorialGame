@@ -8,7 +8,7 @@
 			</Pos>
 		</Hero>
 		<Building>
-			<type>Tower</type>
+			<type>Buildings.Tower</type>
 			<Pos>
 				<x>800</x>
 				<y>700</y>
@@ -17,28 +17,34 @@
 	</User>
 	<AIPlayer>
 		<SpawnPoint>
-			<type>Portal</type>
+			<type>SpawnPoints.Portal</type>
 			<Pos>
 				<x>40</x>
 				<y>40</y>
 			</Pos>
 			<timerAdd>1000</timerAdd>
+			<mob rate="50">Units.Mobs.Imp</mob>
+			<mob rate="20">Units.Mobs.Spider</mob>
 		</SpawnPoint>
 		<SpawnPoint>
-			<type>Portal</type>
+			<type>SpawnPoints.Portal</type>
 			<Pos>
 				<x>800</x>
 				<y>40</y>
 			</Pos>
 			<timerAdd>500</timerAdd>
+			<mob rate="50">Units.Mobs.Imp</mob>
+			<mob rate="30">Units.Mobs.Spider</mob>
 		</SpawnPoint>
 		<SpawnPoint>
-			<type>Portal</type>
+			<type>SpawnPoints.Portal</type>
 			<Pos>
 				<x>1560</x>
 				<y>40</y>
 			</Pos>
 			<timerAdd>0</timerAdd>
+			<mob rate="50">Units.Mobs.Imp</mob>
+			<mob rate="40">Units.Mobs.Spider</mob>
 		</SpawnPoint>
 	</AIPlayer>
 </Root>

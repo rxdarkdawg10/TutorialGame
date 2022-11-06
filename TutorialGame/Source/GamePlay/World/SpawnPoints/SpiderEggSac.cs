@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TutorialGame.Source.Engine;
 using TutorialGame.Source.GamePlay.World.Units;
 using TutorialGame.Source.GamePlay.World.Units.Mobs;
@@ -13,8 +14,8 @@ namespace TutorialGame.Source.GamePlay.World.SpawnPoints
     internal class SpiderEggSac : SpawnPoint
     {
         int maxSpawns, totalSpawns;
-        public SpiderEggSac(Vector2 POS, int OWNERID)
-            : base("2d\\SpawnPoints\\EggSac", POS, new Vector2(45, 45), OWNERID)
+        public SpiderEggSac(Vector2 POS, int OWNERID, XElement DATA)
+            : base("2d\\SpawnPoints\\EggSac", POS, new Vector2(45, 45), OWNERID, DATA)
         {
             totalSpawns = 0;
             maxSpawns = 3;

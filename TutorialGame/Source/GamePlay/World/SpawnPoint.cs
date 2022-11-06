@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TutorialGame.Source.Engine;
+using TutorialGame.Source.GamePlay.World.SpawnPoints;
 using TutorialGame.Source.GamePlay.World.Units.Mobs;
 
 namespace TutorialGame.Source.GamePlay.World
@@ -12,7 +14,8 @@ namespace TutorialGame.Source.GamePlay.World
     internal class SpawnPoint : AttackableObject
     {
         public clsTimer spawnTimer = new clsTimer(2400);
-        public SpawnPoint(string PATH, Vector2 POS, Vector2 DIMS, int OWNERID) : base(PATH, POS, DIMS, OWNERID)
+        public List<MobChoice> mobChoices = new List<MobChoice>();
+        public SpawnPoint(string PATH, Vector2 POS, Vector2 DIMS, int OWNERID, XElement DATA) : base(PATH, POS, DIMS, OWNERID)
         {
             dead = false;
 
@@ -20,6 +23,8 @@ namespace TutorialGame.Source.GamePlay.World
             healthMax = health;
 
             hitDist = 35;
+
+            LoadData(DATA);
         }
 
         public override void Update(Vector2 OFFSET)
@@ -32,6 +37,23 @@ namespace TutorialGame.Source.GamePlay.World
             }
 
             base.Update(OFFSET);
+        }
+
+        public virtual void LoadData(XElement DATA)
+        {
+            if(DATA != null)
+            {
+                spawnTimer.AddToTimer(
+                    Convert.ToInt32(DATA.Element("timerAdd").Value, Globals.culture)
+                    );
+
+                List<XElement> mobList = DATA.Descendants("mob").Select(s => s).ToList<XElement>();
+
+                for (int i = 0; i < mobList.Count; i++)
+                {
+                    mobChoices.Add(new MobChoice(Convert.ToInt32(mobList[i].Attribute("rate").Value, Globals.culture), mobList[i].Value));
+                }
+            }
         }
 
         public virtual void SpawnMob()

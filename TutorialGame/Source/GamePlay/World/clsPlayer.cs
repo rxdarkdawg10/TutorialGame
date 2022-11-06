@@ -31,26 +31,32 @@ namespace TutorialGame.Source.GamePlay.World
         {
             List<XElement> spawnList = DATA.Descendants("SpawnPoint").Select(s => s).ToList<XElement>();
 
+            Type sType = null;
+
+            Console.WriteLine(typeof(clsPlayer).Namespace);
+
             for(int i = 0; i < spawnList.Count; i++)
             {
-                spawnPoints.Add(new Portal(new Vector2(
+                // Can Be Expensive using Activator Methods
+                sType = Type.GetType(typeof(clsPlayer).Namespace +"."+ spawnList[i].Element("type").Value,true);
+                spawnPoints.Add((SpawnPoint)(Activator.CreateInstance(sType, new Vector2(
                     Convert.ToInt32(spawnList[i].Element("Pos").Element("x").Value,Globals.culture),
                     Convert.ToInt32(spawnList[i].Element("Pos").Element("y").Value, Globals.culture)
-                    ), id));
+                    ), id, spawnList[i])));
 
-                spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(
-                    Convert.ToInt32(spawnList[i].Element("timerAdd").Value, Globals.culture)
-                    );
+                
             }
 
             List<XElement> buildingList = DATA.Descendants("Building").Select(s => s).ToList<XElement>();
 
             for (int i = 0; i < buildingList.Count; i++)
             {
-                buildings.Add(new Tower(new Vector2(
+                // Can Be Expensive using Activator Methods
+                sType = Type.GetType(typeof(clsPlayer).Namespace + "." + buildingList[i].Element("type").Value, true);
+                buildings.Add((Building)(Activator.CreateInstance(sType, new Vector2(
                     Convert.ToInt32(buildingList[i].Element("Pos").Element("x").Value, Globals.culture),
                     Convert.ToInt32(buildingList[i].Element("Pos").Element("y").Value, Globals.culture)
-                    ), id));
+                    ), id)));
             }
 
             if(DATA.Element("Hero") != null)
