@@ -31,6 +31,8 @@ namespace TutorialGame.Source.GamePlay
             GameGlobals.PassSpawnPoint = AddSpawnPoint;
             GameGlobals.CheckScroll = CheckScroll;
 
+            GameGlobals.paused = false;
+
             offset = new Vector2(0, 0);
 
             LoadData(1);
@@ -40,7 +42,7 @@ namespace TutorialGame.Source.GamePlay
 
         public virtual void Update()
         {
-            if (!user.hero.dead && user.buildings.Count > 0)
+            if (!user.hero.dead && user.buildings.Count > 0 && !GameGlobals.paused)
             {
 
                 allObjects.Clear();
@@ -68,6 +70,11 @@ namespace TutorialGame.Source.GamePlay
                 {
                     ResetWorld(null);
                 }
+            }
+
+            if (Globals.keyboard.GetSinglePress("Space"))
+            {
+                GameGlobals.paused = !GameGlobals.paused;
             }
 
             ui.Update(this);

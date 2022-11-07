@@ -12,10 +12,12 @@ namespace TutorialGame.Source.GamePlay.World
 {
     internal class UI
     {
+        public Basic2d pauseOverlay;
         public SpriteFont font;
         public QuantityDisplayBar healthBar;
         public UI()
         {
+            pauseOverlay = new Basic2d("2d\\Misc\\PauseOverlay", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new(300,300));
             font = Globals.content.Load<SpriteFont>("Fonts\\Arial16");
             healthBar = new QuantityDisplayBar(
                 new Vector2(104, 16),
@@ -49,8 +51,6 @@ namespace TutorialGame.Source.GamePlay.World
                 Color.Black
             );
 
-            healthBar.Draw(new Vector2(20, Globals.screenHeight - 40));
-
             Globals.normalEffect.Parameters["filterColor"].SetValue(Color.White.ToVector4());
             Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
 
@@ -67,6 +67,13 @@ namespace TutorialGame.Source.GamePlay.World
                     Globals.screenHeight / 2),
                     Color.Black
                 );
+            }
+
+            healthBar.Draw(new Vector2(20, Globals.screenHeight - 40));
+
+            if(GameGlobals.paused)
+            {
+                pauseOverlay.Draw(Vector2.Zero);
             }
         }
     }
