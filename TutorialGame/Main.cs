@@ -12,7 +12,7 @@ namespace TutorialGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         clsGamePlay gamePlay;
-        Basic2d cursor;
+        clsBasic2d cursor;
 
         public Main()
         {
@@ -43,7 +43,7 @@ namespace TutorialGame
             Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            cursor = new Basic2d("2d\\Misc\\Cursor", new Vector2(0, 0), new Vector2(28, 28));
+            cursor = new clsBasic2d("2d\\Misc\\Cursor", new Vector2(0, 0), new Vector2(28, 28));
 
             Globals.normalEffect = Globals.content.Load<Effect>("Effects\\Normal");
 

@@ -6,7 +6,7 @@ namespace TutorialGame.Source.Engine.Output
     internal class QuantityDisplayBar
     {
         public int border;
-        public Basic2d bar, barBKG;
+        public clsBasic2d bar, barBKG;
         public Color color;
 
         public QuantityDisplayBar(Vector2 DIMS, int BORDER, Color COLOR)
@@ -14,12 +14,12 @@ namespace TutorialGame.Source.Engine.Output
             border = BORDER;
             color = COLOR;
 
-            bar = new Basic2d(
+            bar = new clsBasic2d(
                 "2d\\Misc\\Solid",
                 new Vector2(0, 0),
                 new Vector2(DIMS.X - border * 2, DIMS.Y - border * 2));
 
-            barBKG = new Basic2d(
+            barBKG = new clsBasic2d(
                 "2d\\Misc\\Shade",
                 new Vector2(0, 0),
                 new Vector2(DIMS.X, DIMS.Y));

@@ -3,7 +3,7 @@ using TutorialGame.Source.Engine;
 
 namespace TutorialGame.Source.GamePlay.World
 {
-    internal class AttackableObject : Basic2d
+    internal class AttackableObject : clsBasic2d
     {
         public int ownerId;
         public bool dead;

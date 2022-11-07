@@ -66,7 +66,7 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR
 
 
 
-	return color * filterColor;
+	return color * filterColor * input.Color;
 	//return tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;
 }
 

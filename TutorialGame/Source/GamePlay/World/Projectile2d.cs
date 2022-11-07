@@ -5,7 +5,7 @@ using TutorialGame.Source.GamePlay.World.Projectiles;
 
 namespace TutorialGame.Source.GamePlay.World
 {
-    internal class Projectile2d : Basic2d
+    internal class Projectile2d : clsBasic2d
     {
         public float speed;
         public Vector2 direction;

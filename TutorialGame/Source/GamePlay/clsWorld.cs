@@ -37,7 +37,7 @@ namespace TutorialGame.Source.GamePlay
 
             LoadData(1);
 
-            ui = new UI();
+            ui = new UI(ResetWorld);
         }
 
         public virtual void Update()
