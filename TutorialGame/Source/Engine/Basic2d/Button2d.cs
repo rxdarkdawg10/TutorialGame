@@ -18,6 +18,7 @@ namespace TutorialGame.Source.Engine.Basic2d
             string FONTPATH, string TEXT, PassObject BUTTONCLICKED,
             object INFO) : base(PATH, POS, DIMS)
         {
+            info = INFO;
             text = TEXT;
             ButtonClicked = BUTTONCLICKED;
 

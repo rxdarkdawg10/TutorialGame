@@ -19,11 +19,12 @@ namespace TutorialGame.Source.GamePlay
         public AIPlayer aIPlayer;
         public List<Projectile2d> projectiles = new List<Projectile2d>();
         public List<AttackableObject> allObjects = new List<AttackableObject>();
-        PassObject ResetWorld;
+        PassObject ResetWorld, ChangeGameState;
 
-        public clsWorld(PassObject RESETWORLD)
+        public clsWorld(PassObject RESETWORLD, PassObject CHANGEGAMESTATE)
         {
             ResetWorld = RESETWORLD;
+            ChangeGameState = CHANGEGAMESTATE;
 
             GameGlobals.PassProjectile = AddProjectile;
             GameGlobals.PassMob = AddMob;
@@ -70,6 +71,12 @@ namespace TutorialGame.Source.GamePlay
                 {
                     ResetWorld(null);
                 }
+            }
+
+            if (Globals.keyboard.GetSinglePress("Back"))
+            {
+                ResetWorld(null);
+                ChangeGameState(0);
             }
 
             if (Globals.keyboard.GetSinglePress("Space"))

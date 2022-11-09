@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using TutorialGame.Source.Engine.Input;
 using TutorialGame.Source.Engine;
 using TutorialGame.Source;
+using TutorialGame.Source.GamePlay;
+using System;
 
 namespace TutorialGame
 {
@@ -12,6 +14,7 @@ namespace TutorialGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         clsGamePlay gamePlay;
+        clsMainMenu mainMenu;
         clsBasic2d cursor;
 
         public Main()
@@ -50,7 +53,8 @@ namespace TutorialGame
             Globals.keyboard = new clsKeyboard();
             Globals.mouse = new clsMouseControl();
 
-            gamePlay = new clsGamePlay();
+            mainMenu = new clsMainMenu(ChangeGameState, ExitGame);
+            gamePlay = new clsGamePlay(ChangeGameState);
         }
 
         protected override void Update(GameTime gameTime)
@@ -62,12 +66,34 @@ namespace TutorialGame
             Globals.keyboard.Update();
             Globals.mouse.Update();
 
-            gamePlay.Update();
 
+            if(Globals.gameState == 0)
+            {
+                mainMenu.Update();
+            } 
+            else  if(Globals.gameState == 1)
+            {
+                gamePlay.Update();
+            }
+
+
+            
 
             Globals.keyboard.UpdateOld();
             Globals.mouse.UpdateOld();
             base.Update(gameTime);
+        }
+
+        public virtual void ChangeGameState(object INFO)
+        {
+            Globals.gameState = Convert.ToInt32(INFO, Globals.culture);
+        }
+
+        public virtual void ExitGame(object INFO)
+        {
+            //Windows Specific
+            Exit();
+            Environment.Exit(0);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -80,7 +106,14 @@ namespace TutorialGame
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
 
-            gamePlay.Draw();
+            if (Globals.gameState == 0)
+            {
+                mainMenu.Draw();
+            }
+            else if (Globals.gameState == 1)
+            {
+                gamePlay.Draw();
+            }
 
 
             Globals.normalEffect.Parameters["xSize"].SetValue((float)cursor.myModel.Bounds.Width);

@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Xna.Framework;
+using TutorialGame.Source.Engine;
 using TutorialGame.Source.GamePlay;
 
 namespace TutorialGame.Source
@@ -8,11 +9,14 @@ namespace TutorialGame.Source
     {
         int playState;
         clsWorld world;
+        PassObject ChangeGameState;
 
-        public clsGamePlay()
+        public clsGamePlay(PassObject CHANGEGAMESTATE)
         {
             playState = 0;
+            ChangeGameState = CHANGEGAMESTATE;
             ResetWorld(null);
+            
         }
 
         public virtual void Update()
@@ -25,7 +29,7 @@ namespace TutorialGame.Source
 
         public virtual void ResetWorld(object INFO)
         {
-            world = new clsWorld(ResetWorld);
+            world = new clsWorld(ResetWorld, ChangeGameState);
         }
 
         public virtual void Draw()
